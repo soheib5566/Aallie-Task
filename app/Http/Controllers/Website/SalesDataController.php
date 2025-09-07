@@ -25,9 +25,9 @@ class SalesDataController extends Controller
         ]);
     }
 
-    public function update(SalesDataUpdateRequest $request, SalesData $sales_datum)
+    public function update(SalesDataUpdateRequest $request, SalesData $salesData)
     {
-        $updatedSalesData = $request->updateSalesData($sales_datum);
+        $updatedSalesData = $request->updateSalesData($salesData);
 
         return response()->json([
             'message' => 'SalesData updated successfully',
@@ -35,9 +35,9 @@ class SalesDataController extends Controller
         ], 200);
     }
 
-    public function destroy(SalesData $sales_datum)
+    public function destroy(SalesData $salesData)
     {
-        $sales_datum->delete();
+        $salesData->delete();
         return response()->json(['message' => 'SalesData deleted successfully']);
     }
 }

@@ -9,5 +9,5 @@ use Illuminate\Support\Facades\Route;
 Route::group([
     'as' => 'website.',
 ], function () {
-    Route::apiResource('sales-data', SalesDataController::class)->except(['show']);
+    Route::apiResource('sales-datas', SalesDataController::class)->except(['show']);
 });
