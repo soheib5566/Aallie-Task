@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('sales_data', function (Blueprint $table) {
             $table->id();
+            $table->string('product');
+            $table->decimal('q1_sales', 10, 2);
+            $table->decimal('q2_sales', 10, 2);
+            $table->decimal('q3_sales', 10, 2);
+            $table->decimal('q4_sales', 10, 2);
+            $table->decimal('target', 10, 2);
             $table->timestamps();
         });
     }
