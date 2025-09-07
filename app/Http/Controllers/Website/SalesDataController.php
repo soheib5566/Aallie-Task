@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Website;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Website\SalesDataCreateRequest;
+use App\Http\Requests\Website\SalesDataUpdateRequest;
 use App\Http\Resources\Website\SalesDataResource;
 use App\Models\SalesData;
 use Illuminate\Http\Request;
@@ -15,9 +17,27 @@ class SalesDataController extends Controller
         return SalesDataResource::collection($salesData);
     }
 
-    public function store() {}
+    public function store(SalesDataCreateRequest $request)
+    {
+        return response()->json([
+            'message' => 'SalesData created successfully',
+            'sales_data' => new SalesDataResource($request->storeSalesData())
+        ]);
+    }
 
-    public function update() {}
+    public function update(SalesDataUpdateRequest $request, SalesData $sales_datum)
+    {
+        $updatedSalesData = $request->updateSalesData($sales_datum);
 
-    public function destroy() {}
+        return response()->json([
+            'message' => 'SalesData updated successfully',
+            'data' => new SalesDataResource($updatedSalesData),
+        ], 200);
+    }
+
+    public function destroy(SalesData $sales_datum)
+    {
+        $sales_datum->delete();
+        return response()->json(['message' => 'SalesData deleted successfully']);
+    }
 }
